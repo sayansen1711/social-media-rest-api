@@ -1,4 +1,7 @@
 package com.project.rest.webservices.social_media.repository;
 
-public class FollowRepository {
+import com.project.rest.webservices.social_media.entity.Follow;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FollowRepository extends JpaRepository<Follow, Integer> {
 }

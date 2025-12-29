@@ -1,4 +1,7 @@
 package com.project.rest.webservices.social_media.repository;
 
-public class CommentRepository {
+import com.project.rest.webservices.social_media.entity.Comment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CommentRepository extends JpaRepository<Comment, Integer> {
 }
