@@ -7,20 +7,19 @@ import java.time.LocalDate;
 @Entity
 public class Post {
 
-    private String username;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    private LocalDate date;
+    @Column(nullable = false)
+    private String username;
+    @Column(nullable = false)
+    private LocalDate createdAt;
+    @Column(nullable = false, length = 100)
     private String title;
+    @Column(nullable = false, length = 500)
     private String description;
 
-    public Post(String username, LocalDate date, String title, String description) {
-        this.username = username;
-        this.date = date;
-        this.title = title;
-        this.description = description;
-    }
+    public Post(){}
 
     public String getUsername() {
         return username;
@@ -34,16 +33,12 @@ public class Post {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setCreatedAt(LocalDate date) {
+        this.createdAt = date;
     }
 
     public String getTitle() {
