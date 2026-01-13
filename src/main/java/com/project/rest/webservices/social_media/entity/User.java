@@ -1,9 +1,6 @@
 package com.project.rest.webservices.social_media.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -11,12 +8,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
     private String role;
 
-    public User(String username, String role) {
-        this.username = username;
-        this.role = role;
+    public User() {
     }
 
     public String getUsername() {
