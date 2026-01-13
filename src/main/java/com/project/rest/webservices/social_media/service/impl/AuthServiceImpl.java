@@ -10,6 +10,8 @@ import com.project.rest.webservices.social_media.repository.UserRepository;
 import com.project.rest.webservices.social_media.service.AuthService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
@@ -30,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
         user.setPassword(securityConfig.passwordEncoder().encode(requestDto.getPassword()));
         user.setRole(requestDto.getRole());
         User savedUser=userRepository.save(user);
-        return new UserReponseDto(savedUser.getId(),savedUser.getUsername());
+        return new UserReponseDto(savedUser.getId(),savedUser.getUsername(), savedUser.getRole());
     }
 
     @Override
@@ -42,5 +44,11 @@ public class AuthServiceImpl implements AuthService {
         if(!securityConfig.passwordEncoder().matches(requestDto.getPassword(), user.getPassword())){
             throw new RuntimeException("Invalid credentials");
         }
+    }
+
+    @Override
+    public UserReponseDto getUserById(int id) {
+        User user= userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return new UserReponseDto(user.getId(), user.getUsername(), user.getRole());
     }
 }
