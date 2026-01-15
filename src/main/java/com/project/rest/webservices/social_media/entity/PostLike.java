@@ -10,21 +10,22 @@ public class PostLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
 
-    public PostLike(String username) {
-        this.username = username;
+    private User user;
+
+    public PostLike(User user) {
+        this.user = user;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
