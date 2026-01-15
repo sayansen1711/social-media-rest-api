@@ -10,23 +10,28 @@ public class Post {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false)
-    private String username;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @Column(nullable = false)
     private LocalDate createdAt;
+
     @Column(nullable = false, length = 100)
     private String title;
-    @Column(nullable = false, length = 500)
+
+    @Column(length = 500)
     private String description;
 
     public Post(){}
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(User user) {
+        this.user = user;
     }
 
     public int getId() {
